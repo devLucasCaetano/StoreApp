@@ -1,0 +1,12 @@
+import 'styled-components';
+import theme from '../theme/styles';
+
+declare module 'styled-components' {
+  type ThemeType = typeof theme;
+
+  export interface DefaultTheme extends ThemeType {
+    COLORS: {
+      WHITE: string;
+    };
+  }
+}
