@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Container, LogoIcon, Title} from './HeaderStyles';
 
 function HeaderComponent(): JSX.Element {
   return (
-    <View>
-      <Text>Header Component</Text>
-    </View>
+    <Container>
+      <LogoIcon width={60} />
+      <Title>LC Store</Title>
+    </Container>
   );
 }
 
