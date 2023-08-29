@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import Logo from '../../assets/icons/lucas-logo-claro.svg';
 
 export const Container = styled.View`
-  height: 120px;
+  height: 100px;
   background-color: ${({theme}) => theme.COLORS.BLUE_500};
   flex-direction: row;
   align-items: center;
