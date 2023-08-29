@@ -21,10 +21,11 @@ function AppRoutes(): JSX.Element {
             backgroundColor: '#FFF',
             borderTopWidth: 0,
             elevation: 0,
+            paddingBottom: 10,
           },
         }}>
         <Screen
-          name="Catalog"
+          name="Catálogo"
           component={CatalogScreen}
           options={{
             tabBarIcon: ({color}) => (
@@ -33,7 +34,7 @@ function AppRoutes(): JSX.Element {
           }}
         />
         <Screen
-          name="Cart"
+          name="Carrinho"
           component={CartScreen}
           options={{
             tabBarIcon: ({color}) => (
