@@ -1,37 +1,45 @@
 import React from 'react';
 
+import {Image} from 'react-native';
+
 import {
+  AddButton,
   Container,
   Description,
   GroupDescription,
   Price,
   ProductImage,
   Title,
+  ButtonText,
 } from './ProductsStyles';
+import ProductsComponentProps from './ProductsComponentType';
 
-interface ProductsInterface {
-  name: string;
-  price: string;
-  description: string;
-}
+function ProductsComponent(props: ProductsComponentProps): JSX.Element {
+  const productItem = props.item;
 
-function ProductsComponent({
-  name,
-  price,
-  description,
-}: ProductsInterface): JSX.Element {
   return (
     <Container>
       {/* TODO image */}
       <ProductImage>
-        <Title>{name}</Title>
+        <Image
+          style={{
+            width: '100%',
+            height: 220,
+            borderRadius: 15,
+          }}
+          source={{
+            uri: productItem.image,
+          }}
+        />
       </ProductImage>
       <GroupDescription>
-        <Title>{name}</Title>
-        <Description>{description}</Description>
-        <Price>{price}</Price>
+        <Title>{productItem.title}</Title>
+        <Description>{productItem.description}</Description>
+        <Price>{productItem.price}</Price>
+        <AddButton onPress={() => {console.log('fui apertado')}}>
+          <ButtonText>Adicionar</ButtonText>
+        </AddButton>
       </GroupDescription>
-        {/* TODO BUTTON ADD TO CART */}
     </Container>
   );
 }

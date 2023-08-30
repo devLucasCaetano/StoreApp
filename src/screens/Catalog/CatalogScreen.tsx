@@ -2,47 +2,42 @@ import React from 'react';
 import {Container} from './CatalogStyles';
 import ProductsComponent from '../../components/Products/ProductsComponent';
 import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
+import {IProducts} from '../../interfaces/Products';
 
-const productList = [
+const productList: Array<IProducts> = [
   {
     id: 1,
-    name: 'Camiseta',
-    price: '100',
-    description: 'Product 1 description',
+  title: 'Sapato',
+  price: '99.90',
+  category: 'calçados',
+  description: 'bom demaizi',
+  image: 'https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024',
   },
   {
     id: 2,
-    name: 'Tênis',
-    price: '200',
-    description: 'Product 2 description',
+  title: 'Tênis',
+  price: '20.95',
+  category: 'calçados',
+  description: 'bom demaizi',
+  image: 'https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024',
   },
   {
     id: 3,
-    name: 'Fone',
-    price: '300',
-    description: 'Product 3 description',
+  title: 'Teclado',
+  price: '499.90',
+  category: 'informática',
+  description: 'bom demaizi',
+  image: 'https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024',
   },
 ];
 
 function CatalogScreen(): JSX.Element {
-  const renderProductItem = ({
-    item,
-  }: {
-    item: {name: string; price: string; description: string};
-  }) => (
-    <ProductsComponent
-      name={item.name}
-      price={item.price}
-      description={item.description}
-    />
-  );
-
   return (
     <Container>
       <GestureHandlerRootView>
         <FlatList
           data={productList}
-          renderItem={renderProductItem}
+          renderItem={({ item }) => <ProductsComponent item={item} />}
           keyExtractor={item => item.id.toString()}
         />
       </GestureHandlerRootView>
