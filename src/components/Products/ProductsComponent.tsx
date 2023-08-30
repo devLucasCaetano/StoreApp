@@ -35,13 +35,9 @@ function ProductsComponent(props: ProductsComponentProps): JSX.Element {
         <Title>{productItem.title}</Title>
         <Description>{productItem.description}</Description>
         <Price>{productItem.price}</Price>
-        {/* <AddButton
-          onPress={() => {
-            console.log('fui apertado');
-          }}>
-          <ButtonText>Adicionar</ButtonText>
-        </AddButton> */}
-        <ButtonComponent title={productItem.title} btnType={btnType} />
+        {productItem.id !== -1 && (
+          <ButtonComponent title={productItem.title} btnType={btnType} />
+        )}
       </GroupDescription>
     </Container>
   );
