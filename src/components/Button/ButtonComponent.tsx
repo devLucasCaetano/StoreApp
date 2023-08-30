@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Container, Title} from './ButtonStyles';
-import { IButton } from '../../interfaces/Button';
+import {IButton} from '../../interfaces/Button';
 
 function ButtonComponent(props: IButton): JSX.Element {
   const {title, type} = props;

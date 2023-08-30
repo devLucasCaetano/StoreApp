@@ -1,7 +1,7 @@
-import { IProducts } from '../../interfaces/Products';
+import {IProducts} from '../../interfaces/Products';
 
 interface ProductsComponentProps {
-  item: IProducts
+  item: IProducts;
 }
 
 export default ProductsComponentProps;

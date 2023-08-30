@@ -36,7 +36,10 @@ function ProductsComponent(props: ProductsComponentProps): JSX.Element {
         <Title>{productItem.title}</Title>
         <Description>{productItem.description}</Description>
         <Price>{productItem.price}</Price>
-        <AddButton onPress={() => {console.log('fui apertado')}}>
+        <AddButton
+          onPress={() => {
+            console.log('fui apertado');
+          }}>
           <ButtonText>Adicionar</ButtonText>
         </AddButton>
       </GroupDescription>
