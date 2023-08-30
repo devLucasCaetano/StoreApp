@@ -36,7 +36,11 @@ function ProductsComponent(props: ProductsComponentProps): JSX.Element {
         <Description>{productItem.description}</Description>
         <Price>{productItem.price}</Price>
         {productItem.id !== -1 && (
-          <ButtonComponent title={productItem.title} btnType={btnType} />
+          <ButtonComponent
+            productId={productItem.id}
+            title={productItem.title}
+            btnType={btnType}
+          />
         )}
       </GroupDescription>
     </Container>
