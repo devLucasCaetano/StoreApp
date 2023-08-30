@@ -12,22 +12,33 @@ function AppRoutes(): JSX.Element {
     <NavigationContainer>
       <Navigator
         initialRouteName="Catalog"
-        screenOptions={{headerShown: false}}>
+        screenOptions={{
+          headerShown: false,
+          tabBarInactiveTintColor: '#C4C4CC',
+          tabBarActiveTintColor: '#053768',
+          tabBarStyle: {
+            height: 50,
+            backgroundColor: '#FFF',
+            borderTopWidth: 0,
+            elevation: 0,
+            paddingBottom: 10,
+          },
+        }}>
         <Screen
-          name="Catalog"
+          name="Catálogo"
           component={CatalogScreen}
           options={{
             tabBarIcon: ({color}) => (
-              <Icon name="shopping-bag-line" color={color} size={24} />
+              <Icon name="shopping-bag-line" color={color} size={28} />
             ),
           }}
         />
         <Screen
-          name="Cart"
+          name="Carrinho"
           component={CartScreen}
           options={{
             tabBarIcon: ({color}) => (
-              <Icon name="shopping-cart-line" color={color} size={24} />
+              <Icon name="shopping-cart-line" color={color} size={28} />
             ),
           }}
         />
