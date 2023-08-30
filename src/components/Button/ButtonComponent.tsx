@@ -10,8 +10,9 @@ function ButtonComponent(props: IButton): JSX.Element {
       <Container>
         <Button
           onPress={() => {
-            console.log('fui apertado');
-          }}>
+            console.log('fui apertado add', btnProps.btnType);
+          }}
+          btnType={btnProps.btnType}>
           <ButtonText>Adicionar ao carrinho</ButtonText>
         </Button>
       </Container>
@@ -21,8 +22,9 @@ function ButtonComponent(props: IButton): JSX.Element {
       <Container>
         <Button
           onPress={() => {
-            console.log('fui apertado');
-          }}>
+            console.log('fui apertado remove', btnProps.btnType);
+          }}
+          btnType={btnProps.btnType}>
           <ButtonText> Remover </ButtonText>
         </Button>
       </Container>

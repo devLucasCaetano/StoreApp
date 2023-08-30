@@ -40,7 +40,9 @@ function CatalogScreen(): JSX.Element {
       <GestureHandlerRootView>
         <FlatList
           data={productList}
-          renderItem={({item}) => <ProductsComponent item={item} btnType="add" />}
+          renderItem={({item}) => (
+            <ProductsComponent item={item} btnType="add" />
+          )}
           keyExtractor={item => item.id.toString()}
         />
       </GestureHandlerRootView>

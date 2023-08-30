@@ -56,7 +56,9 @@ function CartScreen(): JSX.Element {
         <GestureHandlerRootView>
           <FlatList
             data={productList}
-            renderItem={({item}) => <ProductsComponent item={item} btnType='remove' />}
+            renderItem={({item}) => (
+              <ProductsComponent item={item} btnType="remove" />
+            )}
             keyExtractor={item => item.id.toString()}
           />
         </GestureHandlerRootView>
