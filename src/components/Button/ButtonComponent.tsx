@@ -10,7 +10,6 @@ function ButtonComponent(props: IButton): JSX.Element {
       <Container>
         <Button
           onPress={() => {
-            console.log('fui apertado add', btnProps.btnType);
           }}
           btnType={btnProps.btnType}>
           <ButtonText>Adicionar ao carrinho</ButtonText>
@@ -22,7 +21,6 @@ function ButtonComponent(props: IButton): JSX.Element {
       <Container>
         <Button
           onPress={() => {
-            console.log('fui apertado remove', btnProps.btnType);
           }}
           btnType={btnProps.btnType}>
           <ButtonText> Remover </ButtonText>
@@ -34,7 +32,6 @@ function ButtonComponent(props: IButton): JSX.Element {
       <Container>
         <Button
           onPress={() => {
-            console.log('entrou no else');
           }}>
           <ButtonText> Err </ButtonText>
         </Button>
