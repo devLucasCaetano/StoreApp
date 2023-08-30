@@ -41,18 +41,3 @@ export const Description = styled.Text`
   font-size: ${({theme}) => theme.FONT_SIZE.SM}px;
   color: ${({theme}) => theme.COLORS.GRAY_300};
 `;
-
-export const AddButton = styled.TouchableOpacity<{
-  color?: string
-}>`
-  background-color: ${({theme, color}) => color ?? theme.COLORS.GREEN_700};
-  border-radius: 5px;
-  padding: 5px;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ButtonText = styled.Text`
-  font-size: ${({theme}) => theme.FONT_SIZE.SM}px;
-  color: white
-`;

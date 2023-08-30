@@ -56,7 +56,7 @@ function CartScreen(): JSX.Element {
         <GestureHandlerRootView>
           <FlatList
             data={productList}
-            renderItem={({item}) => <ProductsComponent item={item} />}
+            renderItem={({item}) => <ProductsComponent item={item} btnType='remove' />}
             keyExtractor={item => item.id.toString()}
           />
         </GestureHandlerRootView>
@@ -65,7 +65,7 @@ function CartScreen(): JSX.Element {
         <TotalAmount>
           Total: R${sumTotalAmount(totalAmount, productList) || '0,00'}
         </TotalAmount>
-        {/* todo btn  */}
+        {/* todo btn comprar */}
       </AmountContent>
     </Container>
   );

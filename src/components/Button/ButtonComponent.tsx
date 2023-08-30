@@ -1,17 +1,44 @@
 import React from 'react';
-import {Button, Container, Title} from './ButtonStyles';
+import {Button, Container, ButtonText} from './ButtonStyles';
 import {IButton} from '../../interfaces/Button';
 
 function ButtonComponent(props: IButton): JSX.Element {
-  const {title, type} = props;
+  const btnProps = props;
 
-  return (
-    <Container>
-      <Button type={type}>
-        <Title>{title}</Title>
-      </Button>
-    </Container>
-  );
+  if (btnProps.btnType === 'add') {
+    return (
+      <Container>
+        <Button
+          onPress={() => {
+            console.log('fui apertado');
+          }}>
+          <ButtonText>Adicionar ao carrinho</ButtonText>
+        </Button>
+      </Container>
+    );
+  } else if (btnProps.btnType === 'remove') {
+    return (
+      <Container>
+        <Button
+          onPress={() => {
+            console.log('fui apertado');
+          }}>
+          <ButtonText> Remover </ButtonText>
+        </Button>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <Button
+          onPress={() => {
+            console.log('entrou no else');
+          }}>
+          <ButtonText> Err </ButtonText>
+        </Button>
+      </Container>
+    );
+  }
 }
 
 export default ButtonComponent;
