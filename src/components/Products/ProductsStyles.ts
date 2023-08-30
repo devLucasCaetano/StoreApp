@@ -14,8 +14,6 @@ export const ProductImage = styled.View`
   box-sizing: border-box;
 `;
 
-export const Image = styled.Image``;
-
 export const GroupDescription = styled.View`
   background-color: transparent;
   max-width: 45%;
