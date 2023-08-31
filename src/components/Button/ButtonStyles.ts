@@ -13,12 +13,14 @@ const removeButtonStyle = css`
 `;
 
 export const Button = styled.TouchableOpacity<{btnType?: string}>`
+  flex-direction: row;
   ${props => (props.btnType === 'add' ? addButtonStyle : null)}
   ${props => (props.btnType === 'remove' ? removeButtonStyle : null)}
   border-radius: 5px;
   padding: 5px;
+  height: 50px;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
 `;
 
 export const ButtonText = styled.Text`

@@ -66,6 +66,7 @@ export const Price = styled.Text`
 `;
 
 export const ButtonArea = styled.View`
-  height: 60px;
-  width: 100%;
+  align-self: flex-end;
+  height: 50px;
+  width: 60px;
 `;

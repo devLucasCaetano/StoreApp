@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Container} from './CatalogStyles';
-import ProductsComponent from './components/ProductsComponent';
 import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
 import {IProducts} from '../../interfaces/Products';
 import {productListMock} from '../../mocks/ProductsListMock';
 import {ProductService} from '../../service/Product.service';
 import {Text} from 'react-native-svg';
+import ProductsCatalogComponent from './components/ProductsCatalog';
 
 function CatalogScreen(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +36,7 @@ function CatalogScreen(): JSX.Element {
         <FlatList
           data={productListing}
           renderItem={({item}) => (
-            <ProductsComponent item={item}/>
+            <ProductsCatalogComponent item={item}/>
           )}
           keyExtractor={item => item.id.toString()}
         />

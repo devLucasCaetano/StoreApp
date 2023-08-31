@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import ProductsComponent from './components/ProductsCartComponent';
+import ProductsCartComponent from './components/ProductsCart';
 import {
   AmountContent,
   Container,
@@ -9,13 +9,14 @@ import {
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {FlatList} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { IProducts } from '../../interfaces/Products';
 
 function CartScreen(): JSX.Element {
-  const [cartProducts, setCartProducts] = React.useState<Array<any>>([]);
+  const [cartProducts, setCartProducts] = React.useState<Array<IProducts>>([]);
 
-  function sumTotalAmount(totalAmount: number, product: Array<any>) {
+  function sumTotalAmount(totalAmount: number, product: Array<IProducts>) {
     product.map(item => {
-      totalAmount += Number(item.product.price);
+      totalAmount += Number(item.price);
     });
     return totalAmount.toFixed(2);
   }
@@ -42,12 +43,12 @@ function CartScreen(): JSX.Element {
           <FlatList
             data={cartProducts}
             renderItem={({item}) => (
-              <ProductsComponent
-                item={item.product}
+              <ProductsCartComponent
+                item={item}
                 onUpdateCart={getCartProducts}
               />
             )}
-            keyExtractor={item => item.product.id.toString()}
+            keyExtractor={item => item.id.toString()}
           />
         </GestureHandlerRootView>
       </ProductsContent>

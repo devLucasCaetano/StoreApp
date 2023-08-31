@@ -8,10 +8,10 @@ import {
   Price,
   ProductImage,
   Title,
-} from './ProductsStyles';
+} from './ProductStyles';
 import ProductsComponentProps from './ProductsComponentType';
 import ButtonComponent from '../Button/ButtonComponent';
-import {ProductsView} from './ProductsStyles';
+import {ProductsView} from './ProductStyles';
 
 function ProductsComponent(props: ProductsComponentProps): JSX.Element {
   const productItem = props.item;

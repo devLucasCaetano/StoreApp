@@ -67,7 +67,7 @@ export const Quantity = styled.Text`
   width: 100%;
 `;
 
-export const ButtonView = styled.View`
-  max-width: 20%;
+export const ButtonArea = styled.View`
+  max-width: 60px;
   width: 100%;
 `;
