@@ -14,7 +14,7 @@ async function handleAddProductToCart(product: IProducts) {
 
     if (productIndex !== -1) {
       cart[productIndex].quantity += 1;
-      console.log('adicionando ', cart[productIndex].product.id);
+      console.log('adicionando ', cart[productIndex].product);
     } else {
       cart.push({product, quantity: 1});
     }
@@ -38,7 +38,7 @@ async function handleRemoveProductFromCart(product: IProducts) {
       if (cart[productIndex].quantity === 0) {
         cart.splice(productIndex, 1);
       }
-      console.log('removendo ', cart[productIndex].product.id);
+      console.log('removendo ', cart[productIndex].product.title);
     } else {
       console.log('Produto não encontrado');
     }
@@ -56,13 +56,11 @@ function ButtonComponent(
 
   const handleAddToCart = async () => {
     await handleAddProductToCart(props.product);
-    console.log('add prod cart', props.product);
   };
 
   const handleRemoveFromCart = async () => {
     await handleRemoveProductFromCart(props.product);
     props.onUpdateCart();
-    console.log('remove prod cart', props.product);
   };
 
   if (btnProps.btnType === 'add') {

@@ -4,5 +4,5 @@ export interface IButton {
   title: string;
   btnType: 'add' | 'remove';
   product: IProducts;
-  onUpdateCart: () => void;
+  onUpdateCart?: () => void;
 }

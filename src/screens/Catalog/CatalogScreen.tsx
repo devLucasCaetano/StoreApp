@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Container} from './CatalogStyles';
-import ProductsComponent from '../../components/Products/ProductsComponent';
+import ProductsComponent from './components/ProductsComponent';
 import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
 import {IProducts} from '../../interfaces/Products';
 import {productListMock} from '../../mocks/ProductsListMock';
@@ -36,7 +36,7 @@ function CatalogScreen(): JSX.Element {
         <FlatList
           data={productListing}
           renderItem={({item}) => (
-            <ProductsComponent item={item} btnType="add" />
+            <ProductsComponent item={item}/>
           )}
           keyExtractor={item => item.id.toString()}
         />

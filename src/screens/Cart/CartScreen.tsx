@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import ProductsComponent from '../../components/Products/ProductsComponent';
+import ProductsComponent from './components/ProductsCartComponent';
 import {
   AmountContent,
   Container,
@@ -44,7 +44,6 @@ function CartScreen(): JSX.Element {
             renderItem={({item}) => (
               <ProductsComponent
                 item={item.product}
-                btnType="remove"
                 onUpdateCart={getCartProducts}
               />
             )}
