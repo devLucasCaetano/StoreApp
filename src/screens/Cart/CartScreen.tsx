@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ProductsComponent from '../../components/Products/ProductsComponent';
 import {
   AmountContent,
@@ -9,36 +9,17 @@ import {
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {FlatList} from 'react-native';
 import {IProducts} from '../../interfaces/Products';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const productList: Array<IProducts> = [
-  {
-    id: 1,
-    title: 'Sapato',
-    price: '99.90',
-    category: 'calçados',
-    description: 'bom demaizi',
-    image:
-      'https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024',
-  },
-  {
-    id: 2,
-    title: 'Tênis',
-    price: '20.95',
-    category: 'calçados',
-    description: 'bom demaizi',
-    image:
-      'https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024',
-  },
-  {
-    id: 3,
-    title: 'Teclado',
-    price: '499.90',
-    category: 'informática',
-    description: 'bom demaizi',
-    image:
-      'https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png?w=1024',
-  },
-];
+async function getCartProducts() {
+  try {
+    const cartProducts = await AsyncStorage.getItem('cart');
+    return cartProducts ? JSON.parse(cartProducts) : [];
+  } catch (error) {
+    console.log('Erro ao buscar produtos do carrinho CartScreen', error);
+    return [];
+  }
+}
 
 function sumTotalAmount(totalAmount: number, product: Array<any>) {
   product.map(item => {
@@ -50,14 +31,36 @@ function sumTotalAmount(totalAmount: number, product: Array<any>) {
 let totalAmount = 0;
 
 function CartScreen(): JSX.Element {
+  const [cartProducts, setCartProducts] = React.useState<Array<IProducts>>([]);
+
+  const handleUpdateCart = async () => {
+    try {
+      const updatedCart = await getCartProducts();
+      setCartProducts(updatedCart);
+    } catch (error) {
+      console.log('Erro ao buscar produtos do carrinho', error);
+    }
+  };
+
+  useEffect(() => {
+    getCartProducts().then(products => {
+      setCartProducts(products);
+      console.log('produtos no carrinho UseEffect cartscreen', products);
+    });
+  }, []);
+
   return (
     <Container>
       <ProductsContent>
         <GestureHandlerRootView>
           <FlatList
-            data={productList}
+            data={cartProducts}
             renderItem={({item}) => (
-              <ProductsComponent item={item} btnType="remove" />
+              <ProductsComponent
+                item={item}
+                btnType="remove"
+                onUpdateCart={handleUpdateCart}
+              />
             )}
             keyExtractor={item => item.id.toString()}
           />
@@ -65,7 +68,8 @@ function CartScreen(): JSX.Element {
       </ProductsContent>
       <AmountContent>
         <TotalAmount>
-          Total: R${sumTotalAmount(totalAmount, productList) || '0,00'}
+          Total: R$
+          {sumTotalAmount(totalAmount, cartProducts) || '0,00'}
         </TotalAmount>
         {/* todo btn comprar */}
       </AmountContent>

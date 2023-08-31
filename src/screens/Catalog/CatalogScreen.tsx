@@ -10,7 +10,18 @@ import {Text} from 'react-native-svg';
 function CatalogScreen(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const [productListing, setProductListing] =
-    useState<Array<IProducts>>(productListMock);
+    useState<Array<IProducts>>(
+      productListMock.map(item => {
+        return {
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          price: item.price,
+          image: item.image,
+          category: item.category,
+        };
+      }),
+    );
 
   const getData = async () => {
     setIsLoading(true);
