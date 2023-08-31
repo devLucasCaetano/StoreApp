@@ -7,7 +7,7 @@ export const Container = styled.View`
 `;
 
 export const ProductImage = styled.View`
-  height: 220px;
+  max-height: 220px;
   width: 45%;
   background-color: ${({theme}) => theme.COLORS.GRAY_100};
   border-radius: 8px;
