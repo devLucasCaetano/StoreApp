@@ -26,4 +26,5 @@ export const ButtonText = styled.Text`
   color: white;
   font-weight: bold;
   text-align: center;
+  height: auto;
 `;

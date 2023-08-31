@@ -1,8 +1,8 @@
-import { ButtonType } from '../../interfaces/Button';
-
+import {IProducts} from '../../interfaces/Products';
 interface ProductsComponentProps {
-  item: any;
-  btnType: ButtonType;
+  item: IProducts;
+  btnType: 'add' | 'remove';
+  onUpdateCart?: (toUpdate:IProducts) => void;
 }
 
 export default ProductsComponentProps;

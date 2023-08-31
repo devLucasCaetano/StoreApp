@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {IProducts} from '../../interfaces/Products';
 
 async function handleAddProductToCart(product: IProducts) {
-
   try {
     const existingCart = await AsyncStorage.getItem('cart');
     const cart = existingCart ? JSON.parse(existingCart) : [];
@@ -51,13 +50,12 @@ async function handleRemoveProductFromCart(product: IProducts) {
 }
 
 function ButtonComponent(
-  props: IButton & {product: IProducts; onUpdateCart: () => void},
+  props: IButton,
 ): JSX.Element {
   const btnProps = props;
 
   const handleAddToCart = async () => {
     await handleAddProductToCart(props.product);
-
     console.log('add prod cart', props.product);
   };
 

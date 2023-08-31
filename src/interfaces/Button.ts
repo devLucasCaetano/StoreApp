@@ -1,9 +1,8 @@
+import { IProducts } from './Products';
+
 export interface IButton {
   title: string;
-  btnType: ButtonType;
-}
-
-export enum ButtonType {
-  add = 'add',
-  remove = 'remove',
+  btnType: 'add' | 'remove';
+  product: IProducts;
+  onUpdateCart: () => void;
 }

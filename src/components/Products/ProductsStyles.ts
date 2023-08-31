@@ -2,8 +2,19 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
+`;
+
+export const ProductsView = styled.View`
   flex-direction: row;
-  padding: 16px 0;
+  padding: 0 16px;
+  margin-bottom: 24px;
+  background-color: ${({theme}) => theme.COLORS.WHITE};
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  offset: 0px 2px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid ${({theme}) => theme.COLORS.GRAY_100};
 `;
 
 export const ProductImage = styled.View`
@@ -13,6 +24,14 @@ export const ProductImage = styled.View`
   background-color: ${({theme}) => theme.COLORS.GRAY_100};
   border-radius: 8px;
   box-sizing: border-box;
+`;
+
+export const Img = styled.Image`
+  max-height: 220px;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  /* box-sizing: border-box; */
 `;
 
 export const GroupDescription = styled.View`
@@ -29,6 +48,7 @@ export const Title = styled.Text`
   font-weight: bold;
   color: ${({theme}) => theme.COLORS.GRAY_700};
   max-height: 50px;
+  line-height: 28px;
 `;
 
 export const Price = styled.Text`
@@ -42,4 +62,5 @@ export const Description = styled.Text`
   font-size: ${({theme}) => theme.FONT_SIZE.SM}px;
   color: ${({theme}) => theme.COLORS.GRAY_300};
   max-height: 50px;
+  line-height: 24px;
 `;
