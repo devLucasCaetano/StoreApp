@@ -8,13 +8,11 @@ import {
 } from './CartStyles';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {FlatList} from 'react-native';
-import {IProducts} from '../../interfaces/Products';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 async function getCartProducts() {
   try {
     const cartProducts = await AsyncStorage.getItem('cart');
-    console.log('\n\n\ncartProducts ', cartProducts);
     return cartProducts ? JSON.parse(cartProducts) : [];
   } catch (error) {
     console.log('Erro ao buscar produtos do carrinho CartScreen', error);
@@ -46,7 +44,6 @@ function CartScreen(): JSX.Element {
   useEffect(() => {
     getCartProducts().then(products => {
       setCartProducts(products);
-      console.log('produtos no carrinho UseEffect cartscreen', products);
     });
   }, []);
 
