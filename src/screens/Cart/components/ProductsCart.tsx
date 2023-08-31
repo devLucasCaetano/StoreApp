@@ -13,7 +13,7 @@ import ProductsCartComponentProps from './ProductsCartType';
 import ButtonComponent from '../../../components/Button/ButtonComponent';
 import {ProductsView} from './ProductsCartStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IProducts } from '../../../interfaces/Products';
+import {IProducts} from '../../../interfaces/Products';
 
 function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
   const productItem = props.item;
@@ -21,9 +21,9 @@ function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
   async function handleRemoveProductFromCart() {
     try {
       const existingCart = await AsyncStorage.getItem('cart');
-      console.log ('existingCart', existingCart);
+      console.log('existingCart', existingCart);
       const cart = existingCart ? JSON.parse(existingCart) : [];
-      console.log ('cart', cart);
+      console.log('cart', cart);
       const productIndex = cart.findIndex(
         (item: IProducts) => item.id === productItem.id,
       );
