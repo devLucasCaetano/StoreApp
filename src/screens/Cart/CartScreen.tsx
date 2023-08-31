@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 async function getCartProducts() {
   try {
     const cartProducts = await AsyncStorage.getItem('cart');
+    console.log('\n\n\ncartProducts ', cartProducts);
     return cartProducts ? JSON.parse(cartProducts) : [];
   } catch (error) {
     console.log('Erro ao buscar produtos do carrinho CartScreen', error);
@@ -23,7 +24,7 @@ async function getCartProducts() {
 
 function sumTotalAmount(totalAmount: number, product: Array<any>) {
   product.map(item => {
-    totalAmount += Number(item.price);
+    totalAmount += Number(item.product.price);
   });
   return totalAmount.toFixed(2);
 }
@@ -31,7 +32,7 @@ function sumTotalAmount(totalAmount: number, product: Array<any>) {
 let totalAmount = 0;
 
 function CartScreen(): JSX.Element {
-  const [cartProducts, setCartProducts] = React.useState<Array<IProducts>>([]);
+  const [cartProducts, setCartProducts] = React.useState<Array<any>>([]);
 
   const handleUpdateCart = async () => {
     try {
@@ -57,12 +58,12 @@ function CartScreen(): JSX.Element {
             data={cartProducts}
             renderItem={({item}) => (
               <ProductsComponent
-                item={item}
+                item={item.product}
                 btnType="remove"
                 onUpdateCart={handleUpdateCart}
               />
             )}
-            keyExtractor={item => item.id.toString()}
+            keyExtractor={item => item.product.id.toString()}
           />
         </GestureHandlerRootView>
       </ProductsContent>

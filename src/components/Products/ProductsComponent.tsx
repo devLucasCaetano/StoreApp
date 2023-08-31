@@ -16,7 +16,7 @@ function ProductsComponent(
   props: ProductsComponentProps & {onUpdateCart: () => void},
 ): JSX.Element {
   const productItem = props.item;
-  console.log('productItem', productItem);
+  // console.log('productItem', productItem);
   const btnType = props.btnType;
   // console.log('productItem', productItem.image);
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Container, ButtonText} from './ButtonStyles';
 import {IButton} from '../../interfaces/Button';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IProducts } from '../../interfaces/Products';
+import {IProducts} from '../../interfaces/Products';
 
 async function handleAddProductToCart(product: IProducts) {
   console.log('\n\n add product in cart', product);
@@ -11,19 +11,22 @@ async function handleAddProductToCart(product: IProducts) {
     console.log('product entrou no try', product);
     const existingCart = await AsyncStorage.getItem('cart');
     const cart = existingCart ? JSON.parse(existingCart) : [];
+    console.log('cart', cart);
     const productIndex = cart.findIndex(
       (item: any) => item.product.id === product.id,
     );
+    console.log('productIndex', productIndex);
 
     if (productIndex !== -1) {
       cart[productIndex].quantity += 1;
       console.log('adicionando ', cart[productIndex].product.id);
     } else {
       cart.push({product, quantity: 1});
+      console.log('cart', cart);
     }
 
     await AsyncStorage.setItem('cart', JSON.stringify(cart));
-
+    console.log('chegamos no fim é isso ', cart);
   } catch (error) {
     console.log('Erro ao adicionar produto', error);
   }
@@ -60,7 +63,7 @@ function ButtonComponent(
 
   const handleAddToCart = async () => {
     await handleAddProductToCart(props.product);
-    props.onUpdateCart();
+
     console.log('add prod cart', props.product);
   };
 
