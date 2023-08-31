@@ -9,14 +9,13 @@ import {
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {FlatList} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IProducts } from '../../interfaces/Products';
 
 function CartScreen(): JSX.Element {
-  const [cartProducts, setCartProducts] = React.useState<Array<IProducts>>([]);
+  const [cartProducts, setCartProducts] = React.useState<Array<any>>([]);
 
-  function sumTotalAmount(totalAmount: number, product: Array<IProducts>) {
+  function sumTotalAmount(totalAmount: number, product: Array<any>) {
     product.map(item => {
-      totalAmount += Number(item.price);
+      totalAmount += Number(item.product.price);
     });
     return totalAmount.toFixed(2);
   }
@@ -44,11 +43,11 @@ function CartScreen(): JSX.Element {
             data={cartProducts}
             renderItem={({item}) => (
               <ProductsCartComponent
-                item={item}
+                item={item.product}
                 onUpdateCart={getCartProducts}
               />
             )}
-            keyExtractor={item => item.id.toString()}
+            keyExtractor={item => item.product.id.toString()}
           />
         </GestureHandlerRootView>
       </ProductsContent>

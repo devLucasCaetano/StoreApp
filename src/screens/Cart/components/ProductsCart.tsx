@@ -21,7 +21,9 @@ function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
   async function handleRemoveProductFromCart() {
     try {
       const existingCart = await AsyncStorage.getItem('cart');
+      console.log ('existingCart', existingCart);
       const cart = existingCart ? JSON.parse(existingCart) : [];
+      console.log ('cart', cart);
       const productIndex = cart.findIndex(
         (item: IProducts) => item.id === productItem.id,
       );
@@ -34,7 +36,10 @@ function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
         console.log('removendo ', productItem.title);
       }
 
+      console.log('cartfinal', cart);
+
       await AsyncStorage.setItem('cart', JSON.stringify(cart));
+      // props.onUpdateCart();
     } catch (error) {
       console.log('Erro ao remover produto', error);
     }
