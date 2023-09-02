@@ -4,7 +4,7 @@ import {FlatList, GestureHandlerRootView} from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {IProducts} from '../../interfaces/Products';
 import {productListMock} from '../../mocks/ProductsListMock';
-import {ProductService} from '../../service/Product.service';
+import {ProductService} from '../../services/api/Product.service';
 import {Text} from 'react-native-svg';
 import ProductsCatalogComponent from './components/ProductsCatalog';
 import { ICart } from '../../interfaces/Cart';

@@ -18,7 +18,6 @@ import {ProductsView} from './ProductsCartStyles';
 function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
   const productItem = props.products;
   const productQuantity = props.quantity;
-  //log para ver o carrinho de compras
 
   return (
     <Container>
