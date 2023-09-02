@@ -13,33 +13,9 @@ import {
 import ProductsComponentProps from './ProductsCatalogType';
 import ButtonComponent from '../../../components/Button/ButtonComponent';
 import {ProductsView} from './ProductsCatalogStyles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IProducts } from '../../../interfaces/Products';
 
 function ProductsCatalogComponent(props: ProductsComponentProps): JSX.Element {
   const productItem = props.item;
-
-  async function handleAddProductToCart() {
-    try {
-      const existingCart = await AsyncStorage.getItem('cart');
-      const cart = existingCart ? JSON.parse(existingCart) : [];
-      const productIndex = cart.findIndex(
-        (item: IProducts) => item.id === productItem.id,
-      );
-
-      if (productIndex !== -1) {
-        cart[productIndex].quantity += 1;
-        console.log('adicionando ', cart[productIndex].product.title);
-      } else {
-        cart.push({product: productItem, quantity: 1});
-        console.log('adicionando ', productItem.title);
-      }
-
-      await AsyncStorage.setItem('cart', JSON.stringify(cart));
-    } catch (error) {
-      console.log('Erro ao adicionar produto', error);
-    }
-  }
 
   return (
     <Container>
@@ -61,7 +37,9 @@ function ProductsCatalogComponent(props: ProductsComponentProps): JSX.Element {
             <ButtonComponent
               title=""
               btnType="add"
-              onPress={handleAddProductToCart}
+              onPress={() => {
+                if (props.onProductChange) { props.onProductChange(productItem); }
+              }}
             />
           </ButtonArea>
         </ProductsInfo>

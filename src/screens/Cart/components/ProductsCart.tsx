@@ -12,38 +12,9 @@ import {
 import ProductsCartComponentProps from './ProductsCartType';
 import ButtonComponent from '../../../components/Button/ButtonComponent';
 import {ProductsView} from './ProductsCartStyles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {IProducts} from '../../../interfaces/Products';
 
 function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
   const productItem = props.item;
-
-  async function handleRemoveProductFromCart() {
-    try {
-      const existingCart = await AsyncStorage.getItem('cart');
-      console.log('existingCart', existingCart);
-      const cart = existingCart ? JSON.parse(existingCart) : [];
-      console.log('cart', cart);
-      const productIndex = cart.findIndex(
-        (item: IProducts) => item.id === productItem.id,
-      );
-
-      if (productIndex !== -1) {
-        cart[productIndex].quantity -= 1;
-        console.log('removendo ', cart[productIndex].product.title);
-      } else {
-        cart.push({product: productItem, quantity: 1});
-        console.log('removendo ', productItem.title);
-      }
-
-      console.log('cartfinal', cart);
-
-      await AsyncStorage.setItem('cart', JSON.stringify(cart));
-      // props.onUpdateCart();
-    } catch (error) {
-      console.log('Erro ao remover produto', error);
-    }
-  }
 
   return (
     <Container>
@@ -64,7 +35,11 @@ function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
             <ButtonComponent
               title=""
               btnType="remove"
-              onPress={handleRemoveProductFromCart}
+              onPress={() => {
+                if (props.onProductChange) {
+                  props.onProductChange(productItem);
+                }
+              }}
             />
           </ButtonArea>
         </ProductInfo>

@@ -1,7 +1,7 @@
 import {IProducts} from '../../../interfaces/Products';
 interface ProductsCartComponentProps {
   item: IProducts;
-  onUpdateCart: (toUpdate:IProducts) => void;
+  onProductChange: (item: IProducts) => void;
 }
 
 export default ProductsCartComponentProps;

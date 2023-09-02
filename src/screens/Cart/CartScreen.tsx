@@ -9,31 +9,55 @@ import {
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {FlatList} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {IProducts} from '../../interfaces/Products';
+import {ICart} from '../../interfaces/Cart';
 
 function CartScreen(): JSX.Element {
-  const [cartProducts, setCartProducts] = React.useState<Array<any>>([]);
+  const [cartProducts, setCartProducts] = React.useState<ICart[]>([]);
 
-  function sumTotalAmount(totalAmount: number, product: Array<any>) {
-    product.map(item => {
-      totalAmount += Number(item.product.price);
-    });
-    return totalAmount.toFixed(2);
-  }
-  let totalAmount = 0;
+  async function handleDeleteProductFromCart(productToDelete: IProducts) {
+    const products = await AsyncStorage.getItem('@cart');
+    const productsJson = products ? JSON.parse(products) : [];
 
-  async function getCartProducts() {
-    try {
-      const unWrapped = await AsyncStorage.getItem('cart');
-      const wrappedProducts = unWrapped ? JSON.parse(unWrapped) : [];
-      setCartProducts(wrappedProducts);
-    } catch (error) {
-      console.log('Erro ao buscar produtos do carrinho CartScreen', error);
+    // Verifique se o produto a ser removido existe no carrinho
+    const existingProductIndex = productsJson.findIndex(
+      (product: ICart) => product.product.id === productToDelete.id,
+    );
+
+    if (existingProductIndex !== -1) {
+      const existingProduct = productsJson[existingProductIndex];
+
+      // Se houver mais de uma unidade do produto, apenas diminua a quantidade
+      if (existingProduct.quantity > 1) {
+        existingProduct.quantity--;
+      } else {
+        // Caso contrário, remova o produto completamente do carrinho
+        productsJson.splice(existingProductIndex, 1);
+      }
+
+      await AsyncStorage.setItem('@cart', JSON.stringify(productsJson));
+      setCartProducts([...productsJson]);
     }
   }
 
   useEffect(() => {
-    getCartProducts();
+    async function getProducts() {
+      const products = await AsyncStorage.getItem('@cart');
+      const productsJson = products ? JSON.parse(products) : [];
+      setCartProducts(productsJson);
+    }
+    getProducts();
   }, []);
+
+  const handleTotalAmount = () => {
+    let total = 0;
+    //converte o preço dos produtos em um número e soma
+    cartProducts.forEach(item => {
+      total += Number(item.product.price) * item.quantity;
+    });
+
+    return total;
+  };
 
   return (
     <Container>
@@ -44,7 +68,11 @@ function CartScreen(): JSX.Element {
             renderItem={({item}) => (
               <ProductsCartComponent
                 item={item.product}
-                onUpdateCart={getCartProducts}
+                onProductChange={() =>
+                  handleDeleteProductFromCart(
+                    item.product as unknown as IProducts,
+                  )
+                }
               />
             )}
             keyExtractor={item => item.product.id.toString()}
@@ -53,8 +81,8 @@ function CartScreen(): JSX.Element {
       </ProductsContent>
       <AmountContent>
         <TotalAmount>
-          Total: R$
-          {sumTotalAmount(totalAmount, cartProducts) || '0,00'}
+          Total:R$
+          {handleTotalAmount()}
         </TotalAmount>
         {/* todo btn comprar */}
       </AmountContent>
