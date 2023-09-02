@@ -16,9 +16,11 @@ export const ProductsContent = styled.View`
 export const AmountContent = styled.View`
   width: 100%;
   height: 20%;
+  bottom: 0;
   align-items: flex-start;
   justify-content: space-evenly;
   padding: 0 16px;
+  background-color: ${({theme}) => theme.COLORS.WHITE};
   border-top-style: solid;
   border-top-width: 1px;
   border-top-color: ${({theme}) => theme.COLORS.GRAY_100};

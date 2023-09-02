@@ -67,7 +67,8 @@ function CartScreen(): JSX.Element {
             data={cartProducts}
             renderItem={({item}) => (
               <ProductsCartComponent
-                item={item.product}
+                products={item.product}
+                quantity={item.quantity}
                 onProductChange={() =>
                   handleDeleteProductFromCart(
                     item.product as unknown as IProducts,

@@ -1,6 +1,8 @@
+import { ICart } from '../../../interfaces/Cart';
 import {IProducts} from '../../../interfaces/Products';
 interface ProductsCartComponentProps {
-  item: IProducts;
+  products: IProducts;
+  quantity: ICart['quantity'];
   onProductChange: (item: IProducts) => void;
 }
 

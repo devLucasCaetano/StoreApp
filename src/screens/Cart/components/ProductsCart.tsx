@@ -8,13 +8,17 @@ import {
   ProductImage,
   Title,
   ButtonArea,
+  Quantity,
+  TitleQuantity,
 } from './ProductsCartStyles';
 import ProductsCartComponentProps from './ProductsCartType';
 import ButtonComponent from '../../../components/Button/ButtonComponent';
 import {ProductsView} from './ProductsCartStyles';
 
 function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
-  const productItem = props.item;
+  const productItem = props.products;
+  const productQuantity = props.quantity;
+  //log para ver o carrinho de compras
 
   return (
     <Container>
@@ -29,8 +33,13 @@ function ProductsCartComponent(props: ProductsCartComponentProps): JSX.Element {
           />
         </ProductImage>
         <ProductInfo>
-          <Title>{productItem.title}</Title>
+          <TitleQuantity>
+            <Title>{productItem.title}</Title>
+            <Quantity>Quantidade: {productQuantity}</Quantity>
+          </TitleQuantity>
+
           <Price>{productItem.price}</Price>
+
           <ButtonArea>
             <ButtonComponent
               title=""
