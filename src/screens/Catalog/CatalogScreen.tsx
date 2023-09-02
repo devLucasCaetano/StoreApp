@@ -30,21 +30,17 @@ function CatalogScreen(): JSX.Element {
     const products = await AsyncStorage.getItem('@cart');
     const productsJson = products ? JSON.parse(products) : [];
 
-    // Verifique se o produto já existe no carrinho com base no ID
     const existingProductIndex = productsJson.findIndex(
       (cartItem: ICart) => cartItem.product.id === product.id,
     );
 
     if (existingProductIndex !== -1) {
-      // Se o produto já existe, aumente a quantidade
       productsJson[existingProductIndex].quantity++;
     } else {
-      // Caso contrário, adicione o novo produto ao carrinho
       productsJson.push({product, quantity: 1});
     }
 
     await AsyncStorage.setItem('@cart', JSON.stringify(productsJson));
-    // setCartProducts([...productsJson]);
   }
 
   useEffect(() => {

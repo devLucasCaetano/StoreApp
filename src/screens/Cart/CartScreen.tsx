@@ -19,7 +19,6 @@ function CartScreen(): JSX.Element {
     const products = await AsyncStorage.getItem('@cart');
     const productsJson = products ? JSON.parse(products) : [];
 
-    // Verifique se o produto a ser removido existe no carrinho
     const existingProductIndex = productsJson.findIndex(
       (product: ICart) => product.product.id === productToDelete.id,
     );
@@ -27,11 +26,9 @@ function CartScreen(): JSX.Element {
     if (existingProductIndex !== -1) {
       const existingProduct = productsJson[existingProductIndex];
 
-      // Se houver mais de uma unidade do produto, apenas diminua a quantidade
       if (existingProduct.quantity > 1) {
         existingProduct.quantity--;
       } else {
-        // Caso contrário, remova o produto completamente do carrinho
         productsJson.splice(existingProductIndex, 1);
       }
 
@@ -51,7 +48,6 @@ function CartScreen(): JSX.Element {
 
   const handleTotalAmount = () => {
     let total = 0;
-    //converte o preço dos produtos em um número e soma
     cartProducts.forEach(item => {
       total += Number(item.product.price) * item.quantity;
     });
